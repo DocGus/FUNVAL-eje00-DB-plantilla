@@ -1,15 +1,200 @@
-# Environment and secrets
+# ============================================================
+# GITIGNORE
+# ============================================================
+# FUNCIÓN:
+# Este archivo define qué archivos y directorios debe ignorar Git
+# al detectar cambios y preparar archivos para los commits.
+#
+# ¿POR QUÉ ES IMPORTANTE?
+# Evita incluir en el repositorio archivos innecesarios,
+# configuraciones locales, archivos generados automáticamente
+# y datos sensibles como credenciales o contraseñas.
+#
+# ¿CÓMO FUNCIONA?
+# Cada línea contiene un patrón que Git utiliza para identificar
+# archivos o directorios que deben excluirse del control de versiones.
+#
+# IMPORTANTE:
+# .gitignore no elimina archivos que Git ya está rastreando.
+# Sus reglas se aplican a archivos que todavía no han sido agregados
+# al repositorio.
+# ============================================================
+
+
+# ============================================================
+# 1. VARIABLES DE ENTORNO Y DATOS SENSIBLES
+# ============================================================
+# Los archivos de entorno almacenan valores de configuración como:
+# credenciales de bases de datos, claves API, contraseñas
+# y configuraciones específicas de la aplicación.
+#
+# Estos archivos suelen ser diferentes en cada computadora.
+# No deben publicarse porque pueden exponer información sensible.
+#
+# .env
+# Ignora el archivo principal de variables de entorno.
+#
+# .env.*
+# Ignora archivos cuyo nombre comienza con .env. seguido de
+# otro identificador, por ejemplo: .env.local o .env.production.
+#
+# !.env.example
+# Excepción: permite que Git incluya el archivo .env.example.
+# Este archivo puede contener los nombres de las variables necesarias
+# y valores de ejemplo, pero nunca credenciales reales.
+
 .env
 .env.*
+!.env.example
 
-# Operating system
+
+# ============================================================
+# 2. ARCHIVOS GENERADOS POR EL SISTEMA OPERATIVO
+# ============================================================
+# Los sistemas operativos crean archivos ocultos y metadatos
+# que son útiles localmente, pero no forman parte del código fuente.
+#
+# .DS_Store
+# Ignora los archivos de metadatos creados automáticamente por macOS.
+#
+# Thumbs.db
+# Ignora los archivos de base de datos de miniaturas creados por Windows.
+
 .DS_Store
 Thumbs.db
 
-# Editors
+
+# ============================================================
+# 3. CONFIGURACIONES DE EDITORES Y ENTORNOS DE DESARROLLO
+# ============================================================
+# Los editores de código y los entornos de desarrollo integrados
+# (IDE) pueden generar archivos y carpetas de configuración local.
+#
+# Estas configuraciones pueden contener preferencias personales,
+# rutas locales, información del espacio de trabajo y ajustes
+# específicos de cada computadora.
+#
+# .vscode/
+# Ignora el directorio de configuración local de Visual Studio Code.
+#
+# .idea/
+# Ignora los directorios de configuración creados por los IDE
+# de JetBrains, como IntelliJ IDEA.
+
 .vscode/
 .idea/
 
-# Temporary files
+
+# ============================================================
+# 4. ARCHIVOS TEMPORALES Y REGISTROS DE EJECUCIÓN
+# ============================================================
+# Los archivos temporales y registros de ejecución suelen generarse
+# durante el desarrollo o la ejecución de una aplicación.
+#
+# Generalmente no son necesarios para reconstruir el proyecto.
+#
+# *.log
+# Ignora cualquier archivo cuyo nombre termine en la extensión .log.
+# El asterisco (*) representa cualquier secuencia de caracteres.
+#
+# *.tmp
+# Ignora cualquier archivo cuyo nombre termine en la extensión .tmp.
+
 *.log
 *.tmp
+
+
+# ============================================================
+# 5. DEPENDENCIAS DEL PROYECTO
+# ============================================================
+# Las dependencias son bibliotecas y paquetes externos instalados
+# mediante un gestor de paquetes.
+#
+# Normalmente pueden recuperarse utilizando los archivos de
+# configuración y bloqueo de dependencias del proyecto.
+#
+# node_modules/
+# Ignora el directorio donde npm instala las dependencias de Node.js.
+# Generalmente ocupa mucho espacio y puede reconstruirse ejecutando
+# npm install a partir de los archivos de dependencias.
+
+node_modules/
+
+
+# ============================================================
+# 6. ARCHIVOS GENERADOS DURANTE LA COMPILACIÓN
+# ============================================================
+# Los procesos de compilación generan archivos a partir del código
+# fuente para preparar la aplicación para su ejecución o producción.
+#
+# Estos archivos normalmente pueden regenerarse desde el código original.
+#
+# dist/
+# Ignora el directorio de salida utilizado habitualmente por
+# TypeScript y otras herramientas de compilación.
+#
+# build/
+# Ignora el directorio de compilación utilizado por diferentes
+# frameworks y herramientas de desarrollo.
+
+dist/
+build/
+
+
+# ============================================================
+# 7. REPORTES DE COBERTURA DE PRUEBAS
+# ============================================================
+# Las herramientas de pruebas pueden generar reportes que indican
+# qué partes del código fuente fueron ejecutadas durante las pruebas.
+#
+# coverage/
+# Ignora el directorio que contiene los reportes generados.
+# Estos reportes pueden volver a crearse ejecutando las pruebas
+# con la opción de cobertura.
+
+coverage/
+
+
+# ============================================================
+# 8. ARCHIVOS GENERADOS Y ENTORNOS VIRTUALES DE PYTHON
+# ============================================================
+# Python genera archivos de caché durante su ejecución y utiliza
+# entornos virtuales para aislar las dependencias de cada proyecto.
+#
+# __pycache__/
+# Ignora los directorios que contienen archivos de caché de Python.
+#
+# *.py[cod]
+# Ignora archivos compilados de Python con extensiones .pyc,
+# .pyo o .pyd.
+#
+# .venv/ y venv/
+# Ignora los directorios utilizados habitualmente para crear
+# entornos virtuales de Python.
+# Sus dependencias pueden reinstalarse desde el archivo de
+# requerimientos u otro manifiesto de dependencias.
+
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+
+# ============================================================
+# 9. RESPALDOS DE BASES DE DATOS
+# ============================================================
+# Los archivos de respaldo pueden contener grandes cantidades
+# de información, incluidos datos personales o sensibles.
+#
+# Normalmente no forman parte de los scripts SQL necesarios
+# para construir la estructura de la base de datos.
+#
+# *.sql.backup
+# Ignora archivos de respaldo SQL cuyo nombre termine en .sql.backup.
+#
+# *.dump
+# Ignora archivos de volcado de bases de datos (dump), generados
+# habitualmente por herramientas de respaldo como pg_dump de PostgreSQL.
+
+*.sql.backup
+*.dump
